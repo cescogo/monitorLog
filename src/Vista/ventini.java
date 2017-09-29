@@ -28,6 +28,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import Modelo.*;
+import java.awt.FlowLayout;
 import javax.swing.ImageIcon;
 
 
@@ -65,6 +66,15 @@ public class ventini extends JFrame implements ActionListener {
      pan_log=new JPanel();
      boton= new JButton();
         Log aux= new Log();
+        JLabel carac= new JLabel("inactico ");
+        carac.setForeground(Color.GREEN);
+        pan_log.add(carac,FlowLayout.LEFT);
+         carac= new JLabel("activo ");
+        carac.setForeground(Color.YELLOW);
+        pan_log.add(carac,FlowLayout.CENTER);
+         carac= new JLabel("current");
+        carac.setForeground(Color.RED);
+        pan_log.add(carac,FlowLayout.RIGHT);
         GridBagLayout tb= new GridBagLayout();
         pan_prc.setLayout(tb);
         pan_log.setLayout(tb);
@@ -120,7 +130,7 @@ public class ventini extends JFrame implements ActionListener {
         
         
        
-        
+       add(pan_log,BorderLayout.NORTH);
         add(pan_prc,BorderLayout.CENTER);
          setSize(600,300);
         setLocationRelativeTo(null);
