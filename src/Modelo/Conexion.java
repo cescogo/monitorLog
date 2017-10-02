@@ -104,7 +104,34 @@ public class Conexion {
 
        return logs;
     }
+ public ArrayList<LogLocal> getruts(String group) throws SQLException {
+        String mem,stat;
+        Statement stm = null;
+        ArrayList<LogLocal> logs= new ArrayList<>();
+        try {
+            stm = conexion.createStatement();
+            ResultSet rs = stm.executeQuery("select TYPE,MEMBER from v$logfile where group#='"+group+"'");
 
+            getColumnNames(rs);
+            while (rs.next()) {
+                   
+                   mem= rs.getString("MEMBER");
+                   stat=rs.getString("TYPE");
+                   logs.add(new LogLocal(stat,mem));
+                
+
+            }
+            stm.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+        }
+
+       return logs;
+    }
   
     
     /*Devuelve columna*/

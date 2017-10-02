@@ -35,7 +35,11 @@ public class Control {
     {
         model.getlogs();
     }
-
+    
+    public ArrayList<LogLocal> getLocal(String group) throws SQLException
+    {
+        return model.getruts(group);
+    }
 
 
 }
