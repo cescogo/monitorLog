@@ -69,11 +69,13 @@ public class ventini extends JFrame implements ActionListener {
     }
 
     
-    public void init(ArrayList<Log> logs)
+    public void init(ArrayList<Log> logs,float ave)
     {
        
          pan_prc = new JPanel();
-     pan_log=new JPanel();
+     pan_log=new JPanel(new FlowLayout());
+     pan_log.add(new JLabel("porcentaje en minutos de reescritura de los log: "),FlowLayout.LEFT);
+     pan_log.add(new JLabel(String.valueOf(ave)),FlowLayout.CENTER);
      boton= new JButton();
         Log aux= new Log();
       final JScrollPane scrollPane = new JScrollPane( pan_prc);
@@ -168,7 +170,7 @@ public class ventini extends JFrame implements ActionListener {
        
         if(e.getActionCommand()!="atras"){
             try {
-                System.out.println(e.getActionCommand());
+                
                 rutas(gestor.getLocal(e.getActionCommand()));
             } catch (SQLException ex) {
                 Logger.getLogger(ventini.class.getName()).log(Level.SEVERE, null, ex);

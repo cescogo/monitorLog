@@ -30,7 +30,7 @@ public class Control {
       logs=model.getlogs();
       float ave=model.getaverage(logs.size());
         
-      ini.init(logs);
+      ini.init(logs,ave);
     }
     
     public void getlogs() throws SQLException
