@@ -157,6 +157,47 @@ public class Conexion {
        return logs;
     }
   
+ public float getaverage(int cant) throws SQLException {
+        float mem=0;
+                int stat=cant;
+        Statement stm = null;
+        
+        try {
+            stm = conexion.createStatement();
+            ResultSet rs = stm.executeQuery("select \n" +
+"   b.recid,\n" +
+"   to_char(b.first_time,' hh24:mi:ss') start_time, \n" +
+"   to_char(b.first_time,' dd-mon-yy ') start_Date,\n" +
+"   a.recid,\n" +
+"   to_char(a.first_time,'hh24:mi:ss') end_time,\n" +
+"   to_char(a.first_time,' dd-mon-yy ') start_Date,\n" +
+"   round(((a.first_time-b.first_time)*25)*60,2) minutes\n" +
+"from\n" +
+" v$log_history a,\n" +
+"   v$log_history b\n" +
+"   where \n" +
+"   a.recid = b.recid+1\n" +
+"order by \n" +
+"   a.SEQUENCE# desc");
+
+            getColumnNames(rs);
+            while (stat!=0) {
+                   rs.next();
+                   mem+= rs.getFloat("MINUTES");
+                   stat--;
+             }
+            stm.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+        }
+
+       return (float)mem/(float)cant;
+    }
+  
     
     /*Devuelve columna*/
     public static void getColumnNames(ResultSet rs) throws SQLException {

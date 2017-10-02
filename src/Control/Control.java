@@ -28,6 +28,8 @@ public class Control {
     public void iniciar() throws SQLException  {
         ArrayList<Log> logs= new ArrayList<>();
       logs=model.getlogs();
+      float ave=model.getaverage(logs.size());
+        
       ini.init(logs);
     }
     
