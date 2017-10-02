@@ -74,7 +74,7 @@ public class ventini extends JFrame implements ActionListener {
        
          pan_prc = new JPanel();
      pan_log=new JPanel(new FlowLayout());
-     pan_log.add(new JLabel("porcentaje en minutos de reescritura de los log: "),FlowLayout.LEFT);
+     pan_log.add(new JLabel("Tiempo estimado en minutos de reescritura de los log: "),FlowLayout.LEFT);
      pan_log.add(new JLabel(String.valueOf(ave)),FlowLayout.CENTER);
      boton= new JButton();
         Log aux= new Log();
