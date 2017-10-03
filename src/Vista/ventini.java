@@ -71,11 +71,14 @@ public class ventini extends JFrame implements ActionListener {
     
     public void init(ArrayList<Log> logs,float ave)
     {
-       
+ String Inicial = "00:00";
+int minutos = (int) ave;
+int h = minutos / 60 + Integer.parseInt(Inicial.substring(0,1));
+int m = minutos % 60 + Integer.parseInt(Inicial.substring(3,4));
+             
          pan_prc = new JPanel();
      pan_log=new JPanel(new FlowLayout());
-     pan_log.add(new JLabel("Tiempo estimado en minutos de reescritura de los log: "),FlowLayout.LEFT);
-     pan_log.add(new JLabel(String.valueOf(ave)),FlowLayout.CENTER);
+     pan_log.add(new JLabel("Tiempo estimado de reescritura AVERAGE Es: "),FlowLayout.LEFT);
      boton= new JButton();
         Log aux= new Log();
       final JScrollPane scrollPane = new JScrollPane( pan_prc);
