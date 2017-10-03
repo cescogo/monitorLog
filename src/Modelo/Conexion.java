@@ -105,19 +105,43 @@ public class Conexion {
        return logs;
     }
  public ArrayList<LogLocal> getruts(String group) throws SQLException {
-        String mem,stat;
+        String th,gr,mi,tam,est,arc,tip,rdf,seq,fir,sec;
         Statement stm = null;
         ArrayList<LogLocal> logs= new ArrayList<>();
         try {
             stm = conexion.createStatement();
-            ResultSet rs = stm.executeQuery("select TYPE,MEMBER from v$logfile where group#='"+group+"'");
-
+            //ResultSet rs = stm.executeQuery("select TYPE,MEMBER from v$logfile where group#='"+group+"'");
+            ResultSet rs = stm.executeQuery("SELECT l.thread# as Thread,\n" +
+"       lf.group# as Grupo,\n" +
+"       lf.member as Miembro,\n" +
+"       TRUNC(l.bytes/1024/1024) AS Tam_MB,\n" +
+"       l.status as Estado,\n" +
+"       l.archived as Archive,\n" +
+"       lf.type as Tipo,\n" +
+"       lf.is_recovery_dest_file AS RDF,\n" +
+"       l.sequence# as Sequencia,\n" +
+"       l.first_change# as First,\n" +
+"       l.next_change# as Second   \n" +
+"FROM   v$logfile lf\n" +
+"       JOIN v$log l ON l.group# = lf.group# where lf.group#='"+group+"'");
             getColumnNames(rs);
             while (rs.next()) {
                    
-                   mem= rs.getString("MEMBER");
-                   stat=rs.getString("TYPE");
-                   logs.add(new LogLocal(stat,mem));
+                  
+                    th= rs.getString("Thread");
+                    gr= rs.getString("Grupo");
+                    mi= rs.getString("Miembro");
+                    tam= rs.getString("Tam_MB");
+                    est= rs.getString("Estado");
+                    arc= rs.getString("Archive");
+                    tip= rs.getString("Tipo");
+                    rdf= rs.getString("RDF");
+                    seq= rs.getString("Sequencia");
+                    fir= rs.getString("First");
+                    sec= rs.getString("Second");
+                   
+                   
+                   logs.add(new LogLocal(th,gr,mi,tam,est,arc,tip,rdf,seq,fir,sec));
                 
 
             }

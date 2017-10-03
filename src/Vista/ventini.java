@@ -59,7 +59,7 @@ public class ventini extends JFrame implements ActionListener {
       int[] param;
     public ventini(Control c)
     {
-        super("Ventana de logs");
+        super("VENTANA LOG");
         gestor=c;
          tabla= new ModeloTablalog();
      
@@ -122,7 +122,7 @@ public class ventini extends JFrame implements ActionListener {
             
             gc.gridx=i%4;
             gc.gridy=poy+2;
-            inf= new JLabel("miembros: "+aux.getMember());
+            inf= new JLabel("Miembros: "+aux.getMember());
             pan_prc.add(inf,gc);
            
             
@@ -200,8 +200,20 @@ public class ventini extends JFrame implements ActionListener {
        
        for(int i=0;i<ruts.size();i++)
         {
-           tab.addRow(new Object[]{ruts.get(i).getLocal(),ruts.get(i).getStatus()});
-          
+            //String th,gr,mi,tam,est,arc,tip,rdf,seq,fir,sec;
+           //tab.addRow(new Object[]{ruts.get(i).getLocal(),ruts.get(i).getStatus()});
+           tab.addRow(new Object[]{ruts.get(i).getThread()
+                                   ,ruts.get(i).getGroup()
+                                   ,ruts.get(i).getMiembro()
+                                   ,ruts.get(i).getTamano()
+                                   ,ruts.get(i).getEstado()
+                                   ,ruts.get(i).getArchive()
+                                   ,ruts.get(i).getTipo()
+                                   ,ruts.get(i).getRdf()
+                                   ,ruts.get(i).getSequence()
+                                   ,ruts.get(i).getFirst()
+                                   ,ruts.get(i).getSecond()
+           });
         }
         
         pan_rut.setVisible(true);
@@ -228,8 +240,9 @@ public class ventini extends JFrame implements ActionListener {
         public ModeloTablalocal() {
             super(new Object[][]{},
                     new String[]{            
-            "local","status"});
-            
+                        //RDF Se entiende por direccion de recuperacion.
+            "Thread","Grupo","Miembro","Tamaño","Estado","Archive","Tipo","RDF","Secuencia","First","Second"});
+
             }
         
         @Override
