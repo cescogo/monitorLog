@@ -28,7 +28,7 @@ public class Control {
     public void iniciar() throws SQLException  {
         ArrayList<Log> logs= new ArrayList<>();
       logs=model.getlogs();
-      float ave=model.getaverage(logs.size());
+      float ave=model.getaverage();
         
       ini.init(logs,ave);
     }
