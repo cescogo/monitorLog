@@ -157,9 +157,9 @@ public class Conexion {
        return logs;
     }
   
- public float getaverage(int cant) throws SQLException {
+ public float getaverage() throws SQLException {
         float mem=0;
-                int stat=cant;
+                
         Statement stm = null;
         
         try {
@@ -181,11 +181,11 @@ public class Conexion {
 "   a.SEQUENCE# desc");
 
             getColumnNames(rs);
-            while (stat!=0) {
+            
                    rs.next();
-                   mem+= rs.getFloat("MINUTES");
-                   stat--;
-             }
+                   mem= rs.getFloat("MINUTES");
+                 
+             
             stm.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -195,7 +195,7 @@ public class Conexion {
             }
         }
 
-       return (float)mem/(float)cant;
+       return (float)mem;
     }
   
     
